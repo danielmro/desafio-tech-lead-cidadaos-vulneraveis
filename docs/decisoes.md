@@ -6,7 +6,6 @@ Este documento registra decisões e trade-offs feitos durante o desenvolvimento.
 Daniel Medeiros Rocha
 
 
-
 ## Visão Geral
 - Objetivo: construir um sistema local (pipeline + API + frontend) para monitorar chamados do 1746 usando dados públicos exportados do BigQuery.
 - Princípios: separação de responsabilidades, reprodutibilidade local, simplicidade operacional.
