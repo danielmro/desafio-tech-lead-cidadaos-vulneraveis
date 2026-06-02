@@ -6,6 +6,8 @@ Este guia explica como baixar os dados públicos do 1746 no BigQuery e preparar 
 - Conta Google com BigQuery habilitado (gratuito até determinado volume; ver limites).
 - SDK do Google Cloud (gcloud) se quiser usar a CLI `bq` (opcional, mas recomendado).
 - Espaço em disco local. O corte `data_particao >= '2023-01-01'` reduz bastante, mas ainda podem ser alguns GB.
+- O link público do Google Drive que disponibilizei (vou apagar depois de algumas semanas) para baixar os arquivos de banco utilizados no projeto é:
+https://drive.google.com/drive/folders/1dLgaGwqE5GSvbJVT6yBtog7IT8bYvAFJ?usp=sharing
 
 ## 2) Consulta base (filtro por partição)
 A tabela principal é `datario.adm_central_atendimento_1746.chamado`.

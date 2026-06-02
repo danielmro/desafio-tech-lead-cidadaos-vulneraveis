@@ -52,9 +52,16 @@ Daniel Medeiros Rocha
 - Cache: conexão DuckDB mantida em pool + queries parametrizadas. Possível cache in-memory TTL para agregados.
 
 ## Autenticação e Acesso
-- Mock OIDC: rotas `/auth/login` (gera JWT), `/auth/refresh`, `/auth/logout`.
+- Status atual (mock): a autenticação é simulada localmente. O backend gera e valida JWTs assinados com segredo local ao chamar `/auth/login` (usuário fictício). As claims agora seguem o formato do Keycloak (iss/aud/preferred_username/realm_access/resource_access) e a biblioteca `fastapi-keycloak` está presente no projeto em modo MOCK, sem chamadas externas, apenas para demonstrar compatibilidade e futura integração.
+- Implicações: adequada para desenvolvimento e testes, mas não para produção (sem verificação de assinatura/claims contra IdP, sem gerenciamento de sessão/consentimento, sem rotacionar chaves).
+- Como seria com Keycloak (resumo de desenho):
+  - Frontend redireciona para o Authorization Endpoint do Keycloak (OIDC Authorization Code + PKCE). Após o login, recebe o authorization code e troca por tokens (access/refresh) no Token Endpoint.
+  - Backend valida o access token assinado pelo Keycloak (RS256) usando JWKS (`/.well-known/openid-configuration` → `jwks_uri`), checa `exp`, `aud`, `iss` e `roles`/`realm_access`.
+  - Refresh: frontend usa o refresh token no Token Endpoint para obter novo access token; backend não armazena refresh token.
+  - Logout: chamar o `end_session_endpoint` do Keycloak e invalidar contexto local.
+  - Configuração típica: `OIDC_ISSUER_URL`, `OIDC_CLIENT_ID`, `OIDC_AUDIENCE`, `OIDC_REQUIRED_ROLES` e cache de JWKS com TTL.
 - Roles: `operador`, `admin`, `super_admin`.
-  - Controle: dependências do FastAPI validando `scope/role` no token.
+  - Controle: dependências do FastAPI validando `role` presente no token (mock local) e, em cenário real, mapeando `realm/client roles` do Keycloak para as roles internas.
   - Regra: admin não concede acima do próprio nível.
 
 ## Padrões e Boas Práticas

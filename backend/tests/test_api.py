@@ -93,7 +93,9 @@ def get_client_with_temp_db() -> TestClient:
     db_path = setup_temp_db()
     os.environ["DUCKDB_PATH"] = db_path
 
-    # Import atrasado para usar o DUCKDB_PATH recémd ef inido
+    # Reseta cache de conexão e importa app após configurar DUCKDB_PATH
+    from backend.src.db import reset_connection  # type: ignore
+    reset_connection()
     from backend.src.app import app  # type: ignore
 
     return TestClient(app)

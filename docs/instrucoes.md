@@ -85,9 +85,14 @@ pnpm dev
 ```
 A interface estará disponível em [http://localhost:3000](http://localhost:3000).
 ## 8. Autenticação e controle de acesso
-- A autenticação é mockada na API.
-- Para testar, faça login usando o fluxo descrito na documentação da API.
-- Os tokens devem ser enviados via cabeçalho `Authorization: Bearer <token>`.
+- Status atual (MOCK): usamos JWT local gerado em `POST /auth/login` com claims compatíveis com Keycloak (iss/aud/preferred_username/realm_access/resource_access), mantendo o fluxo simples usado no frontend (botão de login mock).
+- Biblioteca: `fastapi-keycloak` está adicionada como dependência para demonstrar uso e compatibilidade, porém NÃO realizamos chamadas externas nem integramos com um servidor Keycloak real neste projeto.
+- Variáveis úteis:
+  - `USE_KEYCLOAK_MOCK=1` (padrão): mantém o modo mock ativo (sem I/O externo).
+  - `KEYCLOAK_MOCK_ISSUER` (padrão: `https://mock.keycloak.local/realms/demo`)
+  - `KEYCLOAK_MOCK_CLIENT_ID` (padrão: `frontend-app`)
+- Como testar: faça login e use o token nas requisições protegidas via `Authorization: Bearer <token>`. O backend aceita tokens com `aud` Keycloak sem exigir validação de audiência (apenas no modo MOCK).
+- Controle de acesso por roles (mock): `operador`, `admin`, `super_admin`.
 
 ## Resumo final
 Após seguir esses passos, todo o sistema estará operacional, permitindo consultar os chamados via API, visualizar dashboards, fazer filtros, exportar dados e testar a autenticação.

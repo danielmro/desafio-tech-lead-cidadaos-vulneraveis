@@ -5,6 +5,7 @@ PyJWT==2.8.0
 pydantic==2.7.1
 python-dotenv==1.0.1
 polars==0.20.31
+fastapi-keycloak==1.0.10
 
 # Testes
 pytest==8.2.1
