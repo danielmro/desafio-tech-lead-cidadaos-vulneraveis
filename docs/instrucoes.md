@@ -36,8 +36,9 @@ pip install dbt-core dbt-duckdb
 - O arquivo `pipeline/pic.duckdb` será criado automaticamente na primeira execução dos modelos do dbt.
 - Certifique-se de que seus arquivos `.parquet` estão na pasta `data/chamados/`.
 
-Devido a exportação do banco BigQuery, o resultado precisou ser particionado/fragmentado em mais de 1 
-arquivo por exceder 1GB, totalizando assim 50 arquivos ".parquet" utilizando o filtro solicitado. 
+Devido a exportação do banco BigQuery, o resultado precisou ser particionado/fragmentado em muitos 
+arquivo por exceder 1GB não possibilitando 1 arquivo único com tudo, totalizando assim 50 arquivos (000000000000.parquet ao 000000000049.parquet) 
+utilizando o filtro solicitado. 
 (data_particao >= '2023-01-01')
 
 ### a) Exportar os arquivos Parquet do BigQuery
