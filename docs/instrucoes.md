@@ -19,6 +19,12 @@ python -m venv .venv
 . .venv/Scripts/Activate.ps1
 # No Linux/macOS:
 source .venv/bin/activate
+
+#Para rodar o back-end e o front-end separadamente
+#back-end
+.venv\Scripts\uvicorn.exe src.app:app --reload --port 8000
+#front-end
+npm run dev
 ```
 ### b) Instalar dependências do pipeline
 ``` bash
@@ -29,6 +35,10 @@ pip install dbt-core dbt-duckdb
 ## 3. Preparar o banco de dados DuckDB
 - O arquivo `pipeline/pic.duckdb` será criado automaticamente na primeira execução dos modelos do dbt.
 - Certifique-se de que seus arquivos `.parquet` estão na pasta `data/chamados/`.
+
+Devido a exportação do banco BigQuery, o resultado precisou ser particionado/fragmentado em mais de 1 
+arquivo por exceder 1GB, totalizando assim 50 arquivos ".parquet" utilizando o filtro solicitado. 
+(data_particao >= '2023-01-01')
 
 ### a) Exportar os arquivos Parquet do BigQuery
 Siga as orientações do para exportar os arquivos e colocá-los em `data/chamados/`. `dados.md`
