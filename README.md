@@ -25,11 +25,14 @@ Este desafio usa **dados públicos do 1746** no lugar dos dados sensíveis do pr
 
 **`datario.adm_central_atendimento_1746.chamado`** — tabela pública no BigQuery com 14M+ chamados de 2015 a 2024.
 
-Campos relevantes: `id_chamado`, `data_inicio`, `data_fim`, `prazo_atendimento`, `tipo`, `subtipo`, `status`, `situacao`, `longitude`, `latitude`, `data_particao`.
+Campos relevantes: `id_chamado`, `data_inicio`, `data_fim`, `data_alvo_finalizacao`, `tipo`, `subtipo`, `status`, `situacao`, `longitude`, `latitude`, `data_particao`.
 
 Tabelas auxiliares: `datario.dados_mestres.bairro`, `regiao_administrativa`, `area_planejamento`, `subprefeitura`.
 
 Use o BigQuery apenas para extrair os dados brutos (filtre por `data_particao >= '2023-01-01'`). A partir daí, trabalhe localmente da forma que preferir.
+
+obs.: o campo que era solicitado na demanda original, era o "prazo_atendimento", porém não existe este campo no banco de dados e o mais próximo que encontrei foi o 
+"data_alvo_finalizacao", que então substituí no lugar. 
 
 ---
 

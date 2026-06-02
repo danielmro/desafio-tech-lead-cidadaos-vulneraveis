@@ -1,0 +1,14 @@
+pic_duckdb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ./pipeline/pic.duckdb  # caminho do arquivo DuckDB local
+      threads: 4
+      settings:
+        enable_object_cache: true
+        preserve_insertion_order: true
+      extensions:
+        - parquet
+      # Caso queira ler Parquet direto do filesystem
+      external_root: .

@@ -1,0 +1,19 @@
+name: 'pic_pipeline'
+version: '1.0.0'
+config-version: 2
+
+profile: 'pic_duckdb'
+
+model-paths: ['models']
+analysis-paths: ['analysis']
+macro-paths: ['macros']
+seed-paths: ['seeds']
+test-paths: ['tests']
+
+models:
+  pic_pipeline:
+    +materialized: table
+    intermediate:
+      +materialized: table
+    mart:
+      +materialized: table
