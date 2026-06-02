@@ -28,6 +28,7 @@ SELECT
 FROM `datario.adm_central_atendimento_1746.chamado`
 WHERE data_particao >= '2023-01-01';
 ```
+obs.: o campo que era solicitado na demanda original (README), era "prazo_atendimento", porém não existe este campo no banco de dados e o mais próximo que encontrei foi o "data_alvo_finalizacao", que então substituí no lugar.
 
 ## 3) Opção A — Exportar pelo Console do BigQuery
 1. No Console Cloud, abra BigQuery.
