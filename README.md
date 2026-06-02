@@ -2,6 +2,10 @@
 ## Programa Pequenos Cariocas (PIC)
 
 ---
+## READ ME
+obs.: O README (novo) solicitado como instruções de inicialiação, está na pasta \docs que preferi chamar de "instrucoes.md", assim como os outros documentos do projeto.  
+
+---
 
 ## Contexto
 
